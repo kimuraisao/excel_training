@@ -1,0 +1,34 @@
+Option Explicit
+
+Sub データ取込()
+    Dim wsOrg As Worksheet
+    Dim wsDst As Worksheet
+    Dim i As Long
+    Dim rw As Long
+    
+    
+    
+Workbooks.Open Filename:=ThisWorkbook.Path & "\東京.xlsx"
+Workbooks.Open Filename:=ThisWorkbook.Path & "\神奈川.xlsx"
+Workbooks.Open Filename:=ThisWorkbook.Path & "\千葉.xlsx"
+Workbooks.Open Filename:=ThisWorkbook.Path & "\data20160201.csv"
+
+For i = 2 To 25
+
+Set wsOrg = Workbooks("data20160201.csv").Worksheets(1)
+Set wsDst = Workbooks(wsOrg.Cells(i, 2).Value & ".xlsx").Worksheets(wsOrg.Cells(i, 3).Value)
+
+rw = wsDst.Cells(Rows.Count, 1).End(xlUp).Row + 1
+
+wsDst.Cells(rw, 1).Value = wsOrg.Cells(i, 1).Value
+wsDst.Cells(rw, 2).Value = wsOrg.Cells(i, 4).Value
+wsDst.Cells(rw, 3).Value = wsOrg.Cells(i, 5).Value
+wsDst.Cells(rw, 4).Value = wsOrg.Cells(i, 6).Value
+wsDst.Cells(rw, 5).Value = wsOrg.Cells(i, 7).Value
+Next
+
+End Sub
+
+Sub test()
+    MsgBox Rows.Count
+End Sub
