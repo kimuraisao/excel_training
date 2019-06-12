@@ -1,0 +1,54 @@
+Option VBASupport 1
+
+Sub calendar_month2_A()
+	Dim myDate As String
+	Dim Nen As Integer, Tuki As Integer
+	Dim i As Integer, j As Long, k As Integer
+	Dim cn As Long
+	Dim myTitleD, myTitle(1 To 1, 1 To 7)
+	Dim myTable(1 To 12, 1 To 7)
+	Dim c As Range
+'作成する年月を入力します
+	myDate = Application.InputBox(Title:="年月の指定", _Prompt:="年月を 2011/5 の形式で入力してください", _
+	Default:="2019/1", Type:=2)
+'キャンセルボタンを押したとき、日付でないデータの時は終了する
+	If myDate = "False" Or Not IsDate(myDate) Then
+	MsgBox "終了しました"
+	Exit Sub
+	End If
+	Nen = Year(myDate)
+	Tuki = Month(myDate)
+'曜日を配列にセットします
+	myTitleD = Array("日", "月", "火", "水", "木", "金", "土")
+	For k = 0 To 6
+	myTitle(1, k + 1) = myTitleD(k)
+	Next k
+'指定月の日付を配列にセットします
+	cn = 1
+	For j = DateSerial(Nen, Tuki, 1) To DateSerial(Nen, Tuki + 1, 0)
+	If Day(j) <> 1 And Weekday(j) = 1 Then cn = cn + 2
+	myTable(cn, Weekday(j)) = Format(j, "yyyy/m/d")
+	Next j
+'シートに書き出します
+	Application.ScreenUpdating = False
+	Range("A:H").Clear
+	Range("A1").Value = DateSerial(Nen, Tuki, 1)
+	Range("B2").Resize(1, 7).Value = myTitle
+	Range("B3").Resize(12, 7).Value = myTable
+'書式を設定します
+	Range("A1").NumberFormatLocal = "yyyy""年""m""月"""
+	Range("B2").Resize(13, 7).HorizontalAlignment = xlCenter
+	Range("B3").Resize(12, 7).NumberFormatLocal = "d"
+	Range("B2").Resize(13, 7).Borders.LineStyle = True
+'日曜日は赤色,土曜日は青色にします
+	Range("B2").Resize(13, 1).Font.Color = RGB(255, 0, 0)
+	Range("H2").Resize(13, 1).Font.Color = RGB(0, 0, 255)
+'祝日(指定休日)のチェックし、赤色の太文字にします
+	For Each c In Range("B3").Resize(12, 7)
+	If Application.CountIf(Worksheets("Sheet2").Range("A2:A212"), c.Value) > 0 Then
+	c.Font.Color = RGB(255, 0, 0)
+	c.Font.Bold = True
+	End If
+	Next c
+	Application.ScreenUpdating = True
+End Sub
