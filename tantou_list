@@ -1,0 +1,71 @@
+Option Explicit
+
+REM  *****  BASIC  *****
+
+Option VBASupport 1
+
+Sub Main()
+
+'一覧表のクリア
+        Range("A1:Z50").Clear
+   
+ 	Dim fn As String
+	Dim wsDst As Worksheet
+	Dim wsOrg As Worksheet
+	Dim i As long
+		Set wsDst = ThisWorkbook.Worksheets(1)
+		Set wsOrg = Workbooks("台帳.csv").Worksheets(1)
+	Dim lastRow1 As Long
+	Dim lastRow2 As Long
+
+	fn = ThisWorkbook.Path & "/台帳.csv"
+	
+	lastRow1 = Workbooks("台帳.csv").Worksheets(1).Range("A1").End(xlDown).Row
+	lastRow2 = wsDst.Range("A" & Rows.Count).End(xlUp).Row +1
+			
+'転記元のファイルを開く
+        Workbooks.Open(fn)
+
+ '担当者名の設定と項目欄
+	With wsDst
+                .Cells(1,1).Value = "高知県"
+                .Cells(1,5).Value = "愛媛県"
+                .Cells(1,9).Value = "徳島県"
+                .Cells(1,13).Value = "香川県"
+                .Range("B1,F1,K1,P1") = "氏"
+                .Range("C1,G1,L1,Q1") = "名"
+	End With
+	
+'まずはすべて転記
+For i = 2 To lastRow
+
+wsDst.Cells(lastRow2,2).Value = Workbooks("台帳.csv").Worksheets(1).Cells(i,2).Value
+wsDst.Cells(lastRow2,3).Value = Workbooks("台帳.csv").Worksheets(1).Cells(i,4).Value
+wsDst.Cells(lastRow2,4).Value = Workbooks("台帳.csv").Worksheets(1).Cells(i,6).Value
+wsDst.Cells(lastRow2,1).Value = Workbooks("台帳.csv").Worksheets(1).Cells(i,1).Value
+
+Next i
+
+	
+	
+'	If	Workbooks("台帳.csv").Worksheets(1).Cells(2,9).Value = wsDst.Cells(1,1).Value Then
+'		wsDst.Cells(2,1).Value = _
+'			Workbooks("台帳.csv").Worksheets(1).Cells(2,2).Value
+'		wsDst.Cells(2,2).Value = _
+'			Workbooks("台帳.csv").Worksheets(1).Cells(2,3).Value
+'		wsDst.Cells(2,3).Value = _
+'			Workbooks("台帳.csv").Worksheets(1).Cells(2,4).Value
+'		wsDst.Cells(2,4).Value = _
+'			Workbooks("台帳.csv").Worksheets(1).Cells(2,1).Value
+
+'	End If
+
+
+	
+'転記元のファイルを閉じる
+        Workbooks("台帳.csv").Close
+
+
+             
+
+End Sub
