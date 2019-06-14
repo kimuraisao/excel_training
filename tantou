@@ -1,0 +1,107 @@
+Sub 担当一覧更新()
+
+    Workbooks.Open Filename:=ThisWorkbook.Path & "\ケース一覧"
+    
+        Dim rw As Long
+        Dim i As Long
+    
+
+    For i = 2 To 1000
+    
+    rw = Cells(1, 2).End(xlDown).Row + 1
+    
+    If Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "植月" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 2).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 3).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 4).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 5).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 30).Value
+    
+    End If
+    
+    Next
+
+    
+End Sub
+
+
+Sub test()
+         
+   
+        Dim rw As Long
+        Dim i As Long
+    
+
+    For i = 2 To 2000
+    
+    rw = Cells(2000, 2).End(xlUp).Row + 1
+    rw2 = Cells(2000, 6).End(xlUp).Row + 1
+    rw3 = Cells(2000, 10).End(xlUp).Row + 1
+    rw4 = Cells(2000, 14).End(xlUp).Row + 1
+    rw5 = Cells(2000, 18).End(xlUp).Row + 1
+    rw6 = Cells(2000, 22).End(xlUp).Row + 1
+    rw7 = Cells(2000, 26).End(xlUp).Row + 1
+    
+    If Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "植月" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 2).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 3).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 4).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw, 5).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+    
+    ElseIf Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "山中" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw2, 6).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw2, 7).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw2, 8).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw2, 9).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+    
+    ElseIf Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "岡﨑" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw3, 10).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw3, 11).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw3, 12).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw3, 13).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+    
+    ElseIf Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "和田" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw4, 14).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw4, 15).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw4, 16).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw4, 17).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+    
+    ElseIf Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "中谷" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw5, 18).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw5, 19).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw5, 20).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw5, 21).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+    
+    ElseIf Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 40).Value = "木村" And _
+        Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 31).Value = "" Then
+
+
+    Workbooks("担当一覧").Worksheets("list").Cells(rw6, 22).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 1).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw6, 23).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 5).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw6, 24).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 6).Value
+    Workbooks("担当一覧").Worksheets("list").Cells(rw6, 25).Value = Workbooks("ケース一覧").Worksheets("こうち").Cells(i, 28).Value
+        
+    
+    
+    
+    End If
+    
+    Next
+
+End Sub
